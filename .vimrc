@@ -1,4 +1,30 @@
-execute pathogen#infect()
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'a.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-sleuth'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'Valloric/YouCompleteMe'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
 syntax enable
 set autochdir
 colorscheme solarized
@@ -23,12 +49,15 @@ set hlsearch
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100) 
 "make trailing spaces and tabs stand out 
-set listchars=tab:>~,nbsp:_,trail:.
-set list 
 autocmd BufNewFile,BufReadPost *.hn set filetype=cpp
 "map semicolon to colon
 nnoremap ; :
 nnoremap : ;
+
+if exists('g:space_tabs')
+    set listchars=nbsp:_,trail:.,tab:>~
+    set list
+endif
 
 
 filetype on
@@ -54,3 +83,10 @@ noremap <Left>  <NOP>
 
 noremap <leader>. :CtrlPTag<cr>
 
+set shell=/bin/zsh
+augroup reload_vimrc " {
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END " }
+
+let g:python_host_prog = '/usr/bin/python'
