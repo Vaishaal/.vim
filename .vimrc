@@ -9,9 +9,10 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'bruno-/vim-man'
 Plug 'achalddave/cscope_macros.vim'
 Plug 'derekwyatt/vim-scala'
+Plug 'reedes/vim-lexical'
 call plug#end()
 
-
+set dictionary='/usr/share/dict/words'
 syntax enable
 set autochdir
 colorscheme solarized
@@ -34,7 +35,7 @@ set wildignore=*.swp,*.bak,*.pyc,*.class
 set title                " change the terminal's title
 
 nmap <F8> :TagbarToggle<CR>
-let mapleader=" "
+let mapleader=","
 
 
 "highlight all matches
@@ -65,6 +66,8 @@ set expandtab
 set autoindent
 set smartindent
 
+let g:ycm_collect_identifiers_from_tags_files = 1
+
 inoremap <Left>  <NOP>
 inoremap <Right> <NOP>
 inoremap <Up>    <NOP>
@@ -75,8 +78,15 @@ noremap <Up>    <NOP>
 noremap <Down>  <NOP>
 noremap <Left>  <NOP>
 
+set noerrorbells
+set novisualbell
 
 set shell=/bin/zsh
+
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  endif
 
 augroup reload_vimrc " {
     autocmd!
@@ -142,5 +152,5 @@ nnoremap <C-@><C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>
 nnoremap <C-@><C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR> 
 nnoremap <C-@><C-@>i :scs find i <C-R>=expand("<cfile>")<CR><CR> 
 nnoremap <C-@><C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR> 
-
+set pastetoggle=<F10>
 
