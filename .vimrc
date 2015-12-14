@@ -8,6 +8,7 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'Valloric/YouCompleteMe'
 Plug 'bruno-/vim-man'
 Plug 'achalddave/cscope_macros.vim'
+Plug 'derekwyatt/vim-scala'
 call plug#end()
 
 
