@@ -9,10 +9,18 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'bruno-/vim-man'
 Plug 'achalddave/cscope_macros.vim'
 Plug 'derekwyatt/vim-scala'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'reedes/vim-lexical'
 call plug#end()
 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+
+nnoremap <leader>e :bnext<CR>
+nnoremap <leader>w :bprevious<CR>
 set dictionary='/usr/share/dict/words'
+set clipboard=unnamed
 syntax enable
 set autochdir
 colorscheme solarized
@@ -34,8 +42,12 @@ set undolevels=1000      " use many muchos levels of undo
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set title                " change the terminal's title
 
+noremap <leader>b :CtrlPBuffer<CR>
+noremap <leader>r :CtrlPTag<CR>
+
 nmap <F8> :TagbarToggle<CR>
 let mapleader=","
+let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 
 
 "highlight all matches
@@ -82,6 +94,9 @@ set noerrorbells
 set novisualbell
 
 set shell=/bin/zsh
+
+noremap <leader>b :CtrlPBuffer<CR>
+noremap <leader>r :CtrlPTag<CR>
 
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 if executable('ag')
